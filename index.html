@@ -49,7 +49,7 @@ body::before {
   opacity: 0.25;
 }
 
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
@@ -83,7 +83,7 @@ nav ul a:hover { color: var(--text); background: var(--surface3); }
 }
 .nav-cta:hover { background: var(--gold-soft); }
 
-/* ── HERO ── */
+/* HERO */
 #hero {
   min-height: 100vh; padding-top: 58px;
   display: grid; grid-template-columns: 1fr 400px;
@@ -182,7 +182,7 @@ h1.hero-name .last { color: var(--gold-soft); }
   font-size: 11px; color: var(--dim); flex-shrink: 0;
 }
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 section { padding: 96px 64px; border-top: 1px solid var(--border); position: relative; }
 .section-label { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; }
 .section-num { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--gold-dk); }
@@ -193,7 +193,7 @@ h2 {
 }
 .section-line { flex: 1; height: 1px; background: var(--border); }
 
-/* ── SKILLS ── */
+/* SKILLS */
 #skills .skills-grid {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--border); border: 1px solid var(--border);
@@ -225,7 +225,7 @@ h2 {
   background: var(--green-lit); border-radius: 50%; flex-shrink: 0;
 }
 
-/* ── PROJECTS ── */
+/* PROJECTS */
 #projects .projects-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px; background: var(--border); border: 1px solid var(--border);
@@ -299,7 +299,7 @@ h2 {
 }
 .proj-card:hover .proj-cta { gap: 9px; color: var(--gold-soft); }
 
-/* ── MODAL ── */
+/* MODAL */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
   background: rgba(5,9,7,0.88); backdrop-filter: blur(10px);
@@ -386,7 +386,7 @@ h2 {
   padding: 4px 10px; border: 1px solid var(--border2); color: var(--muted);
 }
 
-/* ── EXPERIENCE ── */
+/* EXPERIENCE */
 #experience .exp-grid {
   display: grid; grid-template-columns: 1fr;
   gap: 1px; background: var(--border); border: 1px solid var(--border);
@@ -414,7 +414,7 @@ h2 {
   width: 5px; height: 5px; background: var(--dim); border-radius: 50%;
 }
 
-/* ── EDUCATION ── */
+/* EDUCATION */
 #education .edu-wrap {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1px; background: var(--border); border: 1px solid var(--border);
@@ -452,7 +452,7 @@ h2 {
 .course-list li:last-child { border-bottom: none; }
 .course-list li::before { content: ''; width: 5px; height: 5px; border: 1px solid var(--green-lit); flex-shrink: 0; }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer {
   border-top: 1px solid var(--border); padding: 36px 64px;
   display: flex; justify-content: space-between; align-items: center;
@@ -464,11 +464,11 @@ footer {
 .footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: var(--muted); }
 
-/* ── REVEAL ── */
+/* REVEAL */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.in { opacity: 1; transform: none; }
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width: 960px) {
   nav { padding: 0 20px; }
   nav ul, .nav-cta { display: none; }
@@ -552,12 +552,29 @@ footer {
   <div class="projects-grid">
 
     <div class="proj-card featured reveal" onclick="openModal('fsae')">
-      <div class="proj-header"><span class="proj-category">Formula SAE · Aerodynamics</span><span class="proj-date">Oct – Dec 2025</span></div>
-      <div class="proj-img"><div class="img-ph">📁 assets/fsae.jpg</div></div>
+      <div class="proj-header">
+        <span class="proj-category">Formula SAE · Aerodynamics</span>
+        <span class="proj-date">Oct – Dec 2025</span>
+      </div>
+      <div class="proj-img">
+        <img src="assets/fsae.jpg" alt="FSAE rear beam wing">
+      </div>
       <div class="proj-title">FSAE Rear Beam Wing</div>
-      <div class="proj-highlight"><span class="highlight-pill">~5 lb downforce increase</span><span class="highlight-pill">21+ CFD simulations</span><span class="highlight-pill">6-week R&amp;D</span></div>
+      <div class="proj-highlight">
+        <span class="highlight-pill">~5 lb downforce increase</span>
+        <span class="highlight-pill">21+ CFD simulations</span>
+        <span class="highlight-pill">6-week R&amp;D</span>
+      </div>
       <p class="proj-desc">Designed and simulated a rear beam wing for Cal Poly Pomona's FSAE vehicle using ANSYS Fluent and SolidWorks. Authored an 18-page technical report and presented findings to 50+ team members.</p>
-      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">ANSYS Fluent</span><span class="proj-tag">SolidWorks</span><span class="proj-tag">CFD</span><span class="proj-tag">NACA Airfoil</span></div><span class="proj-cta">Details →</span></div>
+      <div class="proj-footer">
+        <div class="proj-tags">
+          <span class="proj-tag">ANSYS Fluent</span>
+          <span class="proj-tag">SolidWorks</span>
+          <span class="proj-tag">CFD</span>
+          <span class="proj-tag">NACA Airfoil</span>
+        </div>
+        <span class="proj-cta">Details →</span>
+      </div>
     </div>
 
     <div class="proj-card reveal" onclick="openModal('winch')">
@@ -693,9 +710,15 @@ footer {
     <div class="modal-body">
       <div class="modal-section-title">Project Images</div>
       <div class="modal-img-grid">
-        <div class="modal-img"><div class="img-ph">📁 assets/fsae-1.jpg<br>CFD pressure contour</div></div>
-        <div class="modal-img"><div class="img-ph">📁 assets/fsae-2.jpg<br>Wing model</div></div>
-        <div class="modal-img"><div class="img-ph">📁 assets/fsae-3.jpg<br>Wake visualization</div></div>
+        <div class="modal-img">
+          <img src="assets/fsae-1.jpg" alt="FSAE CFD pressure contour">
+        </div>
+        <div class="modal-img">
+          <img src="assets/fsae-2.jpg" alt="FSAE wing model">
+        </div>
+        <div class="modal-img">
+          <img src="assets/fsae-3.jpg" alt="FSAE wake visualization">
+        </div>
       </div>
       <div class="modal-section-title">Key Results</div>
       <div class="modal-results">
