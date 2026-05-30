@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nikolas Dinh — Mechanical Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #0d1210;
+  --surface:   #131a15;
+  --surface2:  #192010;
+  --surface3:  #1e2820;
+  --border:    #253020;
+  --border2:   #304028;
+  --text:      #e6ede8;
+  --muted:     #7a8f7e;
+  --dim:       #445548;
+  --green:     #1E4D2B;
+  --green-mid: #2d6e3e;
+  --green-lit: #3a8a50;
+  --gold:      #F9AD16;
+  --gold-dk:   #c98c0e;
+  --gold-soft: #f9c85a;
+  --display:   'Syne', sans-serif;
+  --sans:      'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.25;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 58px;
+  background: rgba(13,18,16,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--display);
+  font-size: 17px; font-weight: 700;
+  color: var(--text); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+nav ul { list-style: none; display: flex; gap: 4px; }
+nav ul a {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+  color: var(--muted); text-decoration: none;
+  padding: 6px 14px; border-radius: 2px;
+  transition: color 0.2s, background 0.2s;
+}
+nav ul a:hover { color: var(--text); background: var(--surface3); }
+.nav-links { display: flex; gap: 10px; align-items: center; }
+.nav-resume {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.03em;
+  color: var(--gold-soft); background: transparent;
+  text-decoration: none; padding: 7px 16px;
+  border: 1px solid var(--gold-dk);
+  transition: background 0.2s, color 0.2s;
+}
+.nav-resume:hover { background: rgba(249,173,22,0.12); color: var(--gold); }
+.nav-cta {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.03em;
+  color: var(--bg); background: var(--gold);
+  text-decoration: none; padding: 7px 18px;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-soft); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh; padding-top: 58px;
+  display: grid; grid-template-columns: 1fr 400px;
+  position: relative; overflow: hidden;
+}
+#hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px; opacity: 0.35;
+}
+#hero::before {
+  content: ''; position: absolute; top: -120px; left: -120px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(30,77,43,0.25) 0%, transparent 70%);
+  pointer-events: none; z-index: 1;
+}
+.hero-main {
+  padding: 96px 64px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-soft); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px; opacity: 0.85;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 28px; height: 2px;
+  background: var(--gold); opacity: 0.6; border-radius: 2px;
+}
+h1.hero-name {
+  font-family: var(--display);
+  font-size: clamp(54px, 6.5vw, 90px); font-weight: 800;
+  line-height: 0.95; letter-spacing: -0.03em;
+  color: var(--text); margin-bottom: 32px;
+}
+h1.hero-name .last { color: var(--gold-soft); }
+.hero-desc {
+  font-size: 16px; font-weight: 300;
+  color: var(--muted); max-width: 500px; line-height: 1.75; margin-bottom: 48px;
+}
+.hero-desc strong { color: var(--text); font-weight: 500; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+  text-decoration: none; padding: 13px 26px;
+  background: var(--green); color: var(--text); border: 1px solid var(--green-mid);
+  transition: background 0.2s; cursor: pointer; display: inline-block;
+}
+.btn-primary:hover { background: var(--green-mid); }
+.btn-ghost {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.03em;
+  text-decoration: none; padding: 13px 26px;
+  background: transparent; color: var(--muted); border: 1px solid var(--border2);
+  transition: border-color 0.2s, color 0.2s; cursor: pointer; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+.hero-sidebar {
+  background: var(--surface); border-left: 1px solid var(--border);
+  padding: 96px 36px 80px;
+  display: flex; flex-direction: column; justify-content: center; gap: 36px;
+  position: relative; z-index: 2;
+}
+.stat-block { padding-bottom: 30px; border-bottom: 1px solid var(--border); }
+.stat-block:last-child { border-bottom: none; padding-bottom: 0; }
+.stat-num {
+  font-family: var(--display);
+  font-size: 48px; font-weight: 800; line-height: 1;
+  color: var(--gold-soft); letter-spacing: -0.03em;
+}
+.stat-num sup { font-size: 22px; color: var(--gold-dk); font-weight: 600; vertical-align: super; }
+.stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
+.stat-sub { font-size: 12px; color: var(--dim); margin-top: 3px; }
+
+.resume-block {
+  padding-bottom: 30px; border-bottom: 1px solid var(--border);
+}
+.resume-link-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--surface2); border: 1px solid var(--border2);
+  padding: 14px 18px; text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.resume-link-btn:hover { border-color: var(--gold-dk); background: var(--surface3); }
+.resume-link-label {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft);
+}
+.resume-link-arrow { font-size: 16px; color: var(--gold-dk); transition: transform 0.2s; }
+.resume-link-btn:hover .resume-link-arrow { transform: translate(3px, -3px); }
+
+.contact-strip { display: flex; flex-direction: column; gap: 10px; }
+.contact-item {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.contact-item:hover { color: var(--text); }
+.contact-icon {
+  width: 28px; height: 28px; border: 1px solid var(--border2); background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--dim); flex-shrink: 0;
+}
+
+/* ── SECTIONS ── */
+section { padding: 96px 64px; border-top: 1px solid var(--border); position: relative; }
+.section-label { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; }
+.section-num { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--gold-dk); }
+h2 { font-family: var(--display); font-size: clamp(28px, 3vw, 44px); font-weight: 700; letter-spacing: -0.025em; color: var(--text); }
+.section-line { flex: 1; height: 1px; background: var(--border); }
+
+/* ── SKILLS ── */
+#skills .skills-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+}
+.skill-card { background: var(--surface); padding: 32px 26px; transition: background 0.2s; }
+.skill-card:hover { background: var(--surface2); }
+.skill-icon { width: 36px; height: 36px; border: 1px solid var(--border2); background: var(--surface3); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 15px; color: var(--gold-dk); }
+.skill-card h3 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: 18px; opacity: 0.85; }
+.skill-card ul { list-style: none; }
+.skill-card li { font-size: 13px; color: var(--muted); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.skill-card li:last-child { border-bottom: none; }
+.skill-card li::before { content: ''; width: 4px; height: 4px; background: var(--green-lit); border-radius: 50%; flex-shrink: 0; }
+
+/* ── PROJECTS ── */
+#projects .projects-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+}
+.proj-card {
+  background: var(--surface); padding: 32px 28px;
+  cursor: pointer; position: relative;
+  transition: background 0.22s; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.proj-card::after {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--green-lit), var(--green));
+  transform: scaleY(0); transform-origin: bottom; transition: transform 0.28s ease;
+}
+.proj-card:hover { background: var(--surface2); }
+.proj-card:hover::after { transform: scaleY(1); }
+.proj-card.featured { grid-column: span 2; background: var(--surface2); }
+.proj-card.featured::after { transform: scaleY(1); }
+.proj-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+.proj-category { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft); background: rgba(249,173,22,0.1); border: 1px solid rgba(249,173,22,0.2); padding: 3px 9px; border-radius: 2px; opacity: 0.9; }
+.proj-date { font-size: 11px; color: var(--dim); }
+.proj-img { width: 100%; aspect-ratio: 4/3; background: var(--surface3); border: 1px solid var(--border); margin-bottom: 18px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.proj-img img { width: 100%; height: 100%; object-fit: contain; }
+.proj-img .img-ph { font-size: 12px; color: var(--dim); text-align: center; line-height: 1.8; padding: 16px; }
+.proj-card.featured .proj-img { aspect-ratio: 16/9; }
+.proj-title { font-family: var(--display); font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+.proj-card.featured .proj-title { font-size: 24px; }
+.proj-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+.proj-highlight { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.highlight-pill { font-size: 12px; font-weight: 500; padding: 4px 12px; background: rgba(30,77,43,0.35); border: 1px solid rgba(58,138,80,0.3); color: #8ecf9e; }
+.proj-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.proj-tag { font-size: 11px; font-weight: 500; color: var(--dim); border: 1px solid var(--border); padding: 2px 7px; }
+.proj-cta { font-size: 12px; font-weight: 600; color: var(--gold-dk); display: flex; align-items: center; gap: 5px; white-space: nowrap; transition: gap 0.2s, color 0.2s; }
+.proj-card:hover .proj-cta { gap: 9px; color: var(--gold-soft); }
+
+/* ══════════════════════════════════════════
+   FULL PROJECT MODAL — large presentation
+══════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(4,7,5,0.92); backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  overflow-y: auto;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  width: 100%; max-width: 1140px;
+  margin: auto;
+  position: relative;
+  transform: translateY(24px) scale(0.99);
+  transition: transform 0.3s;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+/* top gradient bar */
+.modal-top-bar { height: 4px; background: linear-gradient(90deg, var(--green), var(--gold)); }
+
+/* header */
+.modal-header {
+  padding: 28px 40px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+  position: sticky; top: 0; background: var(--surface); z-index: 10;
+}
+.modal-header-left { flex: 1; }
+.modal-title { font-family: var(--display); font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; }
+.modal-meta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.modal-meta-item { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+.modal-cat-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft); background: rgba(249,173,22,0.12); border: 1px solid rgba(249,173,22,0.25); padding: 3px 10px; border-radius: 2px; }
+.modal-close {
+  background: none; border: 1px solid var(--border2); color: var(--muted);
+  width: 36px; height: 36px; font-size: 18px; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.modal-close:hover { border-color: var(--text); color: var(--text); background: var(--surface2); }
+
+/* modal body */
+.modal-body { padding: 40px; }
+
+/* hero image / video — full width */
+.modal-hero-img {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--surface3); border: 1px solid var(--border);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 32px;
+}
+.modal-hero-img img { width: 100%; height: 100%; object-fit: contain; }
+
+.modal-video-wrap {
+  position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+  margin-bottom: 32px; background: var(--bg); border: 1px solid var(--border);
+}
+.modal-video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+/* image gallery */
+.modal-gallery {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.modal-gallery-img {
+  aspect-ratio: 4/3; background: var(--surface3); border: 1px solid var(--border);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.modal-gallery-img img { width: 100%; height: 100%; object-fit: contain; }
+.modal-gallery-img.wide { grid-column: span 2; aspect-ratio: 16/9; }
+
+/* section label */
+.modal-sec {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-dk); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.modal-sec::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* two column info blocks */
+.modal-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+.modal-info-block { background: var(--surface2); border: 1px solid var(--border); padding: 24px 22px; }
+.modal-info-block-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold-soft); margin-bottom: 14px; opacity: 0.85;
+  display: flex; align-items: center; gap: 8px;
+}
+.modal-info-block p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+/* results tiles */
+.modal-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin-bottom: 32px; }
+.result-card { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 18px 16px; }
+.result-val { font-family: var(--display); font-size: 30px; font-weight: 700; color: var(--gold-soft); letter-spacing: -0.02em; margin-bottom: 4px; }
+.result-label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* bullet lists */
+.modal-bullets { list-style: none; margin-bottom: 32px; }
+.modal-bullets li { font-size: 14px; color: var(--muted); padding: 8px 0 8px 20px; border-bottom: 1px solid var(--border); position: relative; line-height: 1.65; }
+.modal-bullets li:last-child { border-bottom: none; }
+.modal-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--green-lit); font-size: 18px; line-height: 1.4; }
+
+/* full-width text block */
+.modal-text-block { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--green-lit); padding: 22px 24px; margin-bottom: 32px; }
+.modal-text-block p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+.modal-text-block ul { list-style: none; }
+.modal-text-block ul li { font-size: 14px; color: var(--muted); padding: 5px 0 5px 16px; position: relative; line-height: 1.65; }
+.modal-text-block ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; background: var(--green-lit); border-radius: 50%; }
+
+/* tag row */
+.modal-tags { display: flex; gap: 7px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--border); }
+.modal-tag { font-size: 12px; font-weight: 500; padding: 5px 12px; border: 1px solid var(--border2); color: var(--muted); }
+
+/* ── EDUCATION ── */
+#education .edu-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.edu-main { background: var(--surface); padding: 44px 40px; position: relative; overflow: hidden; }
+.edu-main::before { content: ''; position: absolute; bottom: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(30,77,43,0.2) 0%, transparent 70%); pointer-events: none; }
+.edu-school { font-family: var(--display); font-size: 24px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1.2; }
+.edu-program { font-size: 13px; font-weight: 600; color: var(--gold-soft); margin-bottom: 5px; opacity: 0.8; }
+.edu-meta { font-size: 13px; color: var(--muted); }
+.edu-gpa-big { font-family: var(--display); font-size: 88px; font-weight: 800; color: var(--green-lit); letter-spacing: -0.04em; line-height: 1; margin-top: 28px; opacity: 0.7; }
+.edu-gpa-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-top: 4px; }
+.edu-sidebar { background: var(--surface2); padding: 44px 36px; }
+.edu-sidebar-title { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dk); margin-bottom: 18px; opacity: 0.8; }
+.course-list { list-style: none; }
+.course-list li { font-size: 13px; color: var(--muted); padding: 7px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.course-list li:last-child { border-bottom: none; }
+.course-list li::before { content: ''; width: 5px; height: 5px; border: 1px solid var(--green-lit); flex-shrink: 0; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 36px 64px; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+.footer-name { font-size: 14px; font-weight: 500; color: var(--muted); }
+.footer-name span { color: var(--gold-soft); opacity: 0.8; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--muted); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  nav ul, .nav-resume, .nav-cta { display: none; }
+  #hero { grid-template-columns: 1fr; }
+  .hero-main { padding: 56px 24px; }
+  .hero-sidebar { padding: 40px 24px; border-left: none; border-top: 1px solid var(--border); }
+  section { padding: 60px 24px; }
+  #skills .skills-grid { grid-template-columns: 1fr 1fr; }
+  #projects .projects-grid { grid-template-columns: 1fr; }
+  .proj-card.featured { grid-column: span 1; }
+  .edu-wrap { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 14px; padding: 24px; }
+  .modal-body { padding: 24px 20px; }
+  .modal-header { padding: 20px; position: relative; }
+  .modal-two-col { grid-template-columns: 1fr; }
+  .modal-gallery { grid-template-columns: 1fr 1fr; }
+  .modal-gallery-img.wide { grid-column: span 2; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero"><span class="nav-logo-dot"></span>Nikolas Dinh</a>
+  <ul>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+  <div class="nav-links">
+    <!-- ✏️ EDIT: Update resume URL if it changes -->
+    <a class="nav-resume" href="https://nikolasdinh.github.io/resume/" target="_blank">Resume ↗</a>
+    <a class="nav-cta" href="mailto:nikolasdinh5@gmail.com">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-main">
+    <p class="hero-eyebrow">Cal Poly Pomona · Mechanical Engineering</p>
+    <h1 class="hero-name">Nikolas<br><span class="last">Dinh</span></h1>
+    <p class="hero-desc">
+      Mechanical engineering student with hands-on experience in <strong>CFD simulation</strong>, <strong>CAD design</strong>, <strong>fabrication</strong>, and <strong>embedded systems</strong>. I build things that work — from FSAE aerodynamics to CNC routers.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="https://nikolasdinh.github.io/resume/" target="_blank" class="btn-ghost">View Resume ↗</a>
+    </div>
+  </div>
+  <div class="hero-sidebar">
+    <div class="stat-block">
+      <div class="stat-num">3.5<sup>/4.0</sup></div>
+      <div class="stat-label">GPA</div>
+      <div class="stat-sub">Mechanical Engineering</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">21<sup>+</sup></div>
+      <div class="stat-label">CFD Simulations</div>
+      <div class="stat-sub">ANSYS Fluent &amp; SolidWorks</div>
+    </div>
+    <div class="resume-block">
+      <a class="resume-link-btn" href="https://nikolasdinh.github.io/resume/" target="_blank">
+        <span class="resume-link-label">View Full Resume</span>
+        <span class="resume-link-arrow">↗</span>
+      </a>
+    </div>
+    <div class="contact-strip">
+      <a class="contact-item" href="tel:9096367988"><span class="contact-icon">✆</span>909-636-7988</a>
+      <a class="contact-item" href="mailto:nikolasdinh5@gmail.com"><span class="contact-icon">@</span>nikolasdinh5@gmail.com</a>
+      <a class="contact-item" href="https://www.linkedin.com/in/nikolas-dinh/" target="_blank"><span class="contact-icon">in</span>linkedin.com/in/nikolas-dinh</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label reveal"><span class="section-num">01</span><h2>Technical Skills</h2><div class="section-line"></div></div>
+  <div class="skills-grid">
+    <div class="skill-card reveal"><div class="skill-icon">◻</div><h3>CAD Software</h3><ul><li>SolidWorks (CSWP)</li><li>AutoCAD</li><li>Fusion 360</li><li>OnShape</li></ul></div>
+    <div class="skill-card reveal"><div class="skill-icon">⚙</div><h3>Manufacturing</h3><ul><li>3D Printing / FDM</li><li>Laser Cutting</li><li>Wood Working</li><li>Welding — MIG, TIG, Stick, Flux Core</li><li>GD&amp;T &amp; Prototyping</li><li>Soldering</li></ul></div>
+    <div class="skill-card reveal"><div class="skill-icon">⚡</div><h3>Electronics</h3><ul><li>Arduino</li><li>Raspberry Pi</li><li>Wiring Schematics</li></ul></div>
+    <div class="skill-card reveal"><div class="skill-icon">&lt;/&gt;</div><h3>Programming</h3><ul><li>MATLAB</li><li>ANSYS Fluid Flow Fluent</li><li>Python</li><li>C++</li></ul></div>
+  </div>
+</section>
+
+<!-- PROJECTS — order: FSAE, CNC, Winch, Knife, HVAC, Candy, Cooler, Car App, Bracket, Raspi -->
+<section id="projects">
+  <div class="section-label reveal"><span class="section-num">02</span><h2>Projects</h2><div class="section-line"></div></div>
+  <div class="projects-grid">
+
+    <div class="proj-card featured reveal" onclick="openModal('fsae')">
+      <div class="proj-header"><span class="proj-category">Formula SAE · Aerodynamics</span><span class="proj-date">Oct – Dec 2025</span></div>
+      <div class="proj-img"><img src="assets/fsae.jpg" alt="FSAE Rear Beam Wing"></div>
+      <div class="proj-title">FSAE Rear Beam Wing</div>
+      <div class="proj-highlight"><span class="highlight-pill">~5 lb downforce increase</span><span class="highlight-pill">21+ CFD simulations</span><span class="highlight-pill">6-week R&amp;D</span></div>
+      <p class="proj-desc">CFD-driven design of a rear beam wing for Cal Poly Pomona's FSAE vehicle. 21+ simulations in ANSYS Fluent and SolidWorks, 18-page technical report.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">ANSYS Fluent</span><span class="proj-tag">SolidWorks</span><span class="proj-tag">CFD</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('cnc')">
+      <div class="proj-header"><span class="proj-category">Embedded / CNC</span><span class="proj-date">Apr 2026 – Present</span></div>
+      <div class="proj-img"><img src="assets/cnc.jpg" alt="CNC Router"></div>
+      <div class="proj-title">CNC Router</div>
+      <p class="proj-desc">Arduino-coded 2-axis CNC router with drill bit tool changer, belt-driven NEMA 17 motors and V-Wheel system — all under $200.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">Arduino</span><span class="proj-tag">NEMA 17</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('winch')">
+      <div class="proj-header"><span class="proj-category">Mechanical Design</span><span class="proj-date">Jan – Mar 2026</span></div>
+      <div class="proj-img"><img src="assets/winch.jpg" alt="Winch Sled"></div>
+      <div class="proj-title">Winch Sled</div>
+      <p class="proj-desc">Led team design pulling 4×500g masses 30m in 1.43 sec, $23 under budget. 2:1 mechanical advantage pulley system.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">Team Lead</span><span class="proj-tag">Pulley Systems</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('knife')">
+      <div class="proj-header"><span class="proj-category">Fabrication</span><span class="proj-date">Mar – Jun 2025</span></div>
+      <div class="proj-img"><img src="assets/knife.jpg" alt="Knife Fabrication"></div>
+      <div class="proj-title">Knife Design &amp; Fabrication</div>
+      <p class="proj-desc">A2 tool steel knife — 51.5 HRC hardness, 13.65 kN max bending load. Custom PLA handle with full heat treatment cycle.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">Heat Treatment</span><span class="proj-tag">3D Printing</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('hvac')">
+      <div class="proj-header"><span class="proj-category">Data / Thermal</span><span class="proj-date">Jan – Feb 2025</span></div>
+      <div class="proj-img"><img src="assets/hvac.jpg" alt="HVAC Cost Modeling"></div>
+      <div class="proj-title">HVAC Cost Modeling</div>
+      <p class="proj-desc">1000+ data points — lux, temperature, insulation via Vernier. Modeled California AC cost at $0.32/KW/365 days in MATLAB.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">MATLAB</span><span class="proj-tag">NOAA</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('candy')">
+      <div class="proj-header"><span class="proj-category">CAD / Design Process</span><span class="proj-date">Academic Project</span></div>
+      <div class="proj-img"><img src="assets/candy.jpg" alt="Candy Crushing Device"></div>
+      <div class="proj-title">Candy Crushing Device</div>
+      <p class="proj-desc">Full engineering design process from brainstorming to prototyping — 3D CAD assemblies and exploded models with dimensioned drawings in Fusion 360.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">Fusion 360</span><span class="proj-tag">GD&amp;T</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('cooler')">
+      <div class="proj-header"><span class="proj-category">CAD / Personal</span><span class="proj-date">Personal</span></div>
+      <div class="proj-img"><img src="assets/cooler.jpg" alt="Custom Wooden Ice Cooler"></div>
+      <div class="proj-title">Custom Wooden Ice Cooler</div>
+      <p class="proj-desc">First personal CAD project — designed and built a wooden outdoor ice cooler as a gift with cost optimization and material research.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">SolidWorks</span><span class="proj-tag">Wood Working</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('carapp')">
+      <div class="proj-header"><span class="proj-category">Software</span><span class="proj-date">Oct – Dec 2025</span></div>
+      <div class="proj-img"><img src="assets/carapp.jpg" alt="Project Car Cost Program"></div>
+      <div class="proj-title">Project Car Cost Program</div>
+      <p class="proj-desc">Python app with Tkinter UI and SQLite backend organizing $16,000 of cost data for 14 auto shop customers.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Tkinter</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('bracket')">
+      <div class="proj-header"><span class="proj-category">Reverse Engineering</span><span class="proj-date">Personal</span></div>
+      <div class="proj-img"><img src="assets/bracket.jpg" alt="Rear Seat Bracket Evo 9"></div>
+      <div class="proj-title">Rear Seat Bracket — Evo 9</div>
+      <p class="proj-desc">Reverse-engineered and 3D printed a custom rear seat bracket for a Mitsubishi Lancer Evolution 9 with full technical drawings.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">CAD</span><span class="proj-tag">3D Printing</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('raspi')">
+      <div class="proj-header"><span class="proj-category">Embedded</span><span class="proj-date">Jan – Feb 2025</span></div>
+      <div class="proj-img"><img src="assets/raspi.jpg" alt="Raspberry Pi Visualization"></div>
+      <div class="proj-title">Raspberry Pi Visualization</div>
+      <p class="proj-desc">MATLAB + RPi SenseHAT with gyroscope and joystick to rotate images on an 8×8 LED display with upright orientation maintained.</p>
+      <div class="proj-footer"><div class="proj-tags"><span class="proj-tag">Raspberry Pi</span><span class="proj-tag">MATLAB</span></div><span class="proj-cta">View Project →</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label reveal"><span class="section-num">03</span><h2>Education</h2><div class="section-line"></div></div>
+  <div class="edu-wrap reveal">
+    <div class="edu-main">
+      <div class="edu-school">California Polytechnic<br>University, Pomona</div>
+      <div class="edu-program">B.S. Mechanical Engineering</div>
+      <div class="edu-meta">Expected Graduation: 2027</div>
+      <div class="edu-gpa-big">3.5</div>
+      <div class="edu-gpa-label">Grade Point Average</div>
+    </div>
+    <div class="edu-sidebar">
+      <div class="edu-sidebar-title">Relevant Coursework</div>
+      <ul class="course-list">
+        <li>Fluid Mechanics &amp; CFD</li>
+        <li>Thermodynamics</li>
+        <li>Machine Design</li>
+        <li>Materials Science</li>
+        <li>Dynamics &amp; Vibrations</li>
+        <li>Engineering Drawing &amp; GD&amp;T</li>
+        <li>Embedded Systems</li>
+        <li>Engineering Programming</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Nikolas <span>Dinh</span> · Mechanical Engineering · Cal Poly Pomona</div>
+  <div class="footer-links">
+    <a href="https://nikolasdinh.github.io/resume/" target="_blank">Resume</a>
+    <a href="mailto:nikolasdinh5@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/nikolas-dinh/" target="_blank">LinkedIn</a>
+    <a href="tel:9096367988">909-636-7988</a>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     PROJECT MODALS
+     ✏️ HOW TO EDIT:
+     - Goals: describe what the project was trying to achieve
+     - Design Concept: how you approached the solution
+     - Results: update the <result-val> numbers and labels
+     - What Was Learned: key takeaways
+     - Future Improvements: what you'd do next
+     - Images: replace img src with your actual file paths
+══════════════════════════════════════════ -->
+
+<!-- ── FSAE ── -->
+<div class="modal-overlay" id="modal-fsae">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">FSAE Rear Beam Wing</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Formula SAE · Aerodynamics</span>
+        <span class="modal-meta-item">📅 Oct 2025 – Dec 2025</span>
+        <span class="modal-meta-item">🏎 Cal Poly Pomona FSAE</span>
+        <span class="modal-meta-item">⏱ 6-week R&amp;D</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('fsae')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/fsae.jpg" alt="FSAE Beam Wing"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Design a rear beam wing to increase downforce for Cal Poly Pomona's Formula SAE vehicle while staying within the 76.5×38×20 cm size constraint. The goal was to evaluate whether a beam wing addition would be beneficial to the current aero package through a rigorous 6-week R&amp;D cycle.</p>
+    </div>
+
+    <div class="modal-sec">Design Concept</div>
+    <div class="modal-two-col">
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Airfoil Selection</div>
+        <p>Researched and selected NACA airfoil geometries optimized for high downforce at low Reynolds numbers typical of FSAE speeds. Multiple profiles were compared through iterative CFD runs before settling on the final geometry.</p>
+      </div>
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">CFD Methodology</div>
+        <p>ANSYS Fluent and SolidWorks Flow Simulation were used to model pressure contours, velocity fields, and wake behavior. Simulations were run with the full car body to capture interference effects from the undertray and diffuser.</p>
+      </div>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img wide"><img src="assets/fsae-1.jpg" alt="CFD pressure contour"></div>
+      <div class="modal-gallery-img"><img src="assets/fsae-2.jpg" alt="Wing model"></div>
+      <div class="modal-gallery-img"><img src="assets/fsae-3.jpg" alt="Wake visualization"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <div class="modal-results">
+      <div class="result-card"><div class="result-val">~5 lb</div><div class="result-label">Downforce Increase</div></div>
+      <div class="result-card"><div class="result-val">21+</div><div class="result-label">CFD Simulations Run</div></div>
+      <div class="result-card"><div class="result-val">18 pg</div><div class="result-label">Technical Report</div></div>
+      <div class="result-card"><div class="result-val">50+</div><div class="result-label">Team Members Presented To</div></div>
+    </div>
+    <ul class="modal-bullets">
+      <li>Achieved ~5 lb increase in downforce through beam wing and undertray improvements; identified wake interference as the primary limiting factor</li>
+      <li>Rearward center-of-pressure shift noted as a secondary design consideration</li>
+      <li>Determined addition of a beam wing would be incoherent with the overall goals and cost of the current aero package</li>
+      <li>Presented findings to 50+ team members to assess cost-benefit and system-level integration</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Wake interference is a critical limiting factor in multi-element wing design at FSAE scale</li>
+        <li>CFD workflow for iterative aero design: mesh sensitivity, convergence criteria, post-processing pressure and force data</li>
+        <li>How to structure and communicate a technical recommendation to a large engineering team</li>
+        <li>The importance of system-level thinking — an aerodynamic gain doesn't justify the cost and complexity if it conflicts with vehicle balance goals</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Explore multi-element wing configurations to increase downforce beyond the single-element limit</li>
+        <li>Integrate beam wing analysis with diffuser modeling for a full underbody aero package evaluation</li>
+        <li>Validate CFD results with physical testing using a load cell and pitot tube setup</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">ANSYS Fluent</span><span class="modal-tag">SolidWorks</span><span class="modal-tag">CFD</span><span class="modal-tag">NACA Airfoil</span><span class="modal-tag">Aerodynamics</span><span class="modal-tag">Technical Writing</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── CNC ROUTER ── -->
+<div class="modal-overlay" id="modal-cnc">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">CNC Router</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Embedded / CNC</span>
+        <span class="modal-meta-item">📅 Apr 2026 – Present</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('cnc')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-sec">Demo Video</div>
+    <div class="modal-video-wrap">
+      <iframe src="https://www.youtube.com/embed/akn4IRrfOkw" title="CNC Router Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Build a fully functional 2-axis CNC router from scratch under a $200 budget, with an automated drill bit tool changer and enough positional accuracy for practical use on soft materials.</p>
+    </div>
+
+    <div class="modal-sec">Design Concept</div>
+    <div class="modal-two-col">
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Motion System</div>
+        <p>Belt-driven NEMA 17 stepper motors on both axes, guided by V-wheel linear rails for smooth and accurate motion. Belt drive chosen for cost efficiency while maintaining acceptable backlash for the application.</p>
+      </div>
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Control &amp; Electronics</div>
+        <p>Arduino-based controller with custom firmware to interpret G-code commands and drive the stepper motors. Tool changer mechanism designed for drill bit swaps without manual intervention.</p>
+      </div>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img"><img src="assets/cnc-1.jpg" alt="CNC Router assembly"></div>
+      <div class="modal-gallery-img"><img src="assets/cnc-2.jpg" alt="CNC electronics"></div>
+      <div class="modal-gallery-img"><img src="assets/cnc-3.jpg" alt="CNC in action"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <div class="modal-results">
+      <div class="result-card"><div class="result-val">$200</div><div class="result-label">Total Build Cost</div></div>
+      <div class="result-card"><div class="result-val">2-axis</div><div class="result-label">Controlled Motion</div></div>
+      <div class="result-card"><div class="result-val">Auto</div><div class="result-label">Tool Changer</div></div>
+    </div>
+    <ul class="modal-bullets">
+      <li>Arduino-coded CNC router on a 3.4×7.8 in plate with drill bit tool changer maintaining a $200 budget</li>
+      <li>2-axis controlled with belt driven actuator NEMA 17 motors and V-Wheel system for accuracy</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Motion control fundamentals: step resolution, microstepping, and acceleration profiling</li>
+        <li>G-code parsing and Arduino firmware development for CNC applications</li>
+        <li>Mechanical tolerancing considerations for linear motion systems</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Add a Z-axis for full 3-axis milling capability</li>
+        <li>Upgrade to lead screws for improved positional accuracy and reduced backlash</li>
+        <li>Add limit switches for homing and end-stop protection</li>
+        <li>Expand work area beyond the current 3.4×7.8 in footprint</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">Arduino</span><span class="modal-tag">CNC</span><span class="modal-tag">NEMA 17</span><span class="modal-tag">Belt Drive</span><span class="modal-tag">G-code</span><span class="modal-tag">Embedded Systems</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── WINCH SLED ── -->
+<div class="modal-overlay" id="modal-winch">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">Winch Sled</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Mechanical Design</span>
+        <span class="modal-meta-item">📅 Jan – Mar 2026</span>
+        <span class="modal-meta-item">👥 Team Lead</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('winch')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/winch.jpg" alt="Winch Sled"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Design and build a winch sled capable of pulling 4 circular 500g masses a height of 5ft and a horizontal distance of 30m in minimum time, operating under a strict $25 budget and powered by a 4V DC battery.</p>
+    </div>
+
+    <div class="modal-sec">Design Concept</div>
+    <div class="modal-two-col">
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Pulley System</div>
+        <p>A 2:1 mechanical advantage pulley system was designed to double the effective force output of the motor, allowing a smaller and cheaper servo to pull the full load. The monorail carriage was built from 2×4 pine for rigidity and low friction.</p>
+      </div>
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Energy Storage</div>
+        <p>A flywheel was incorporated to store and release rotational energy, smoothing out peak current demands on the 4V battery and sustaining pull speed over the full 30m distance. Battery efficiency and servo performance were modeled together.</p>
+      </div>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img wide"><img src="assets/winch.jpg" alt="Winch Sled overview"></div>
+      <div class="modal-gallery-img"><img src="assets/winch-1.jpg" alt="Winch Sled detail"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <div class="modal-results">
+      <div class="result-card"><div class="result-val">1.43s</div><div class="result-label">30m Pull Time</div></div>
+      <div class="result-card"><div class="result-val">$23</div><div class="result-label">Under Budget</div></div>
+      <div class="result-card"><div class="result-val">2:1</div><div class="result-label">Mechanical Advantage</div></div>
+      <div class="result-card"><div class="result-val">5 ft</div><div class="result-label">Lift Height</div></div>
+    </div>
+    <ul class="modal-bullets">
+      <li>Pulled 4 circular 500g masses a height of 5ft and 30m distance in 1.43 sec — within time target</li>
+      <li>Completed build $23 under the $25 budget</li>
+      <li>2:1 mechanical advantage system allowed a smaller motor to handle the full load</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Mechanical advantage trade-offs: doubling force halves speed, so optimizing the ratio for both pulling force and time was critical</li>
+        <li>Battery discharge behavior under servo load and how to account for voltage sag in timing estimates</li>
+        <li>Team coordination and division of design tasks under a tight deadline and budget</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Optimize flywheel mass distribution and moment of inertia for faster acceleration phase</li>
+        <li>Explore higher voltage battery options for increased motor speed</li>
+        <li>Reduce friction on the monorail carriage with PTFE pads or roller bearings</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">Mechanical Design</span><span class="modal-tag">Pulley Systems</span><span class="modal-tag">Team Lead</span><span class="modal-tag">Budget Management</span><span class="modal-tag">Flywheel</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── KNIFE ── -->
+<div class="modal-overlay" id="modal-knife">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">Knife Design &amp; Fabrication</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Fabrication</span>
+        <span class="modal-meta-item">📅 March – June 2025</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('knife')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/knife.jpg" alt="Finished knife"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Design and fully fabricate a fixed-blade knife with measurable, verifiable mechanical properties. The goal was to apply heat treatment knowledge, machining techniques, and CAD modeling to produce a functional tool with both performance and aesthetic quality.</p>
+    </div>
+
+    <div class="modal-sec">Design Concept</div>
+    <div class="modal-two-col">
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Blade</div>
+        <p>A2 tool steel was selected for its toughness and machinability. A high saber grind profile was modeled in SolidWorks to balance cutting performance and edge retention. Heat treatment was used to achieve target hardness without making the blade brittle.</p>
+      </div>
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Handle &amp; Sheath</div>
+        <p>A Wa-style octagonal handle was designed in SolidWorks and 3D printed in PLA with a friction-fit sheath. The handle geometry was optimized for grip ergonomics and visual balance with the blade profile.</p>
+      </div>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img"><img src="assets/knife-1.jpg" alt="Knife CAD and process"></div>
+      <div class="modal-gallery-img"><img src="assets/knife_2.jpg" alt="Heat treatment"></div>
+      <div class="modal-gallery-img"><img src="assets/knife_3.jpg" alt="Finished knife detail"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <div class="modal-results">
+      <div class="result-card"><div class="result-val">51.5</div><div class="result-label">HRC Post-Temper Hardness</div></div>
+      <div class="result-card"><div class="result-val">13.65</div><div class="result-label">kN Max Bending Load</div></div>
+      <div class="result-card"><div class="result-val">0.79s</div><div class="result-label">Slicing Time — Fastest in Class</div></div>
+    </div>
+    <ul class="modal-bullets">
+      <li>Achieved 51.5 HRC post-temper hardness via controlled heat treatment cycle using McMaster-Carr A2 stock</li>
+      <li>13.65 kN maximum bending load measured on Universal Instron — within design spec</li>
+      <li>Full fabrication cycle: stock removal, beveling, heat treat, tempering, hand sharpening with wet stone</li>
+      <li>Fastest slicing time (0.79 s) in the final class evaluation</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Heat treatment process for tool steel: austenitizing temperature, quench media, and tempering cycles for A2</li>
+        <li>The hardness-toughness trade-off: higher HRC improves edge retention but increases brittleness</li>
+        <li>Hands-on stock removal, grinding geometry, and sharpening techniques</li>
+        <li>Using Instron for mechanical property verification and data reporting</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Try O1 or 1084 high-carbon steel for a simpler heat treatment process and comparison of properties</li>
+        <li>Attempt a full convex grind for improved cutting geometry</li>
+        <li>Explore natural handle materials (wood, stabilized wood, G10) for a more refined finish</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">A2 Tool Steel</span><span class="modal-tag">Heat Treatment</span><span class="modal-tag">SolidWorks</span><span class="modal-tag">3D Printing</span><span class="modal-tag">Universal Instron</span><span class="modal-tag">Fabrication</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── HVAC ── -->
+<div class="modal-overlay" id="modal-hvac">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">HVAC Cost Modeling</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Data / Thermal</span>
+        <span class="modal-meta-item">📅 Jan – Feb 2025</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('hvac')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/hvac.jpg" alt="HVAC setup"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Model the annual cost of running residential air conditioning in California using experimental data collected from a scaled insulated box. The goal was to predict how insulation quality, lux levels, and ambient temperature affect HVAC operating cost.</p>
+    </div>
+
+    <div class="modal-sec">Design Concept</div>
+    <div class="modal-two-col">
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Data Acquisition</div>
+        <p>Vernier sensors were used to collect lux, surface temperature, and internal air temperature data from an insulated box model across multiple configurations. Over 1000 data points were collected and filtered for outliers before analysis.</p>
+      </div>
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Modeling in MATLAB</div>
+        <p>NOAA historical average temperature data for California was integrated with collected data in MATLAB to build a predictive thermal model. The model estimates annual AC operating cost per insulation configuration at $0.32/KW.</p>
+      </div>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img"><img src="assets/hvac-1.jpg" alt="HVAC test setup"></div>
+      <div class="modal-gallery-img"><img src="assets/hvac-2.jpg" alt="MATLAB data plots"></div>
+      <div class="modal-gallery-img"><img src="assets/hvac-3.jpg" alt="Research poster"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <div class="modal-results">
+      <div class="result-card"><div class="result-val">1000+</div><div class="result-label">Data Points Collected</div></div>
+      <div class="result-card"><div class="result-val">$0.32</div><div class="result-label">Per KW Modeled Cost</div></div>
+    </div>
+    <ul class="modal-bullets">
+      <li>Collected and filtered 1000+ data points of lux, temperature, and insulation measurements</li>
+      <li>Predicted future thermal behavior in California using NOAA average temperatures integrated in MATLAB</li>
+      <li>Compared multiple insulation box configurations and their impact on AC cost over 365 days</li>
+      <li>Presented results as an organized research poster with prediction curves</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Data acquisition workflows: sensor selection, sampling rate, and filtering strategies for noisy data</li>
+        <li>MATLAB data processing: curve fitting, filtering, and visualization for engineering reports</li>
+        <li>Integration of external datasets (NOAA) with experimental data for predictive modeling</li>
+        <li>How to communicate quantitative results clearly through poster-format presentations</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Expand model to include heating cost for a full annual HVAC cost comparison</li>
+        <li>Add humidity as an input variable to improve model accuracy in coastal California</li>
+        <li>Test more insulation materials (spray foam, rigid board) for broader comparison</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">MATLAB</span><span class="modal-tag">NOAA</span><span class="modal-tag">Thermal Modeling</span><span class="modal-tag">Vernier</span><span class="modal-tag">Data Analysis</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── CANDY CRUSHER ── -->
+<div class="modal-overlay" id="modal-candy">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">Candy Crushing Device</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">CAD / Design Process</span>
+        <span class="modal-meta-item">📅 Academic Project</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('candy')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/candy.jpg" alt="Candy Crushing Device"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Design a purely mechanical device capable of grinding tablet candies within a defined distance constraint. The project emphasized the complete engineering design process — from problem statement through documentation — producing accurate, scaled engineering drawings for a preliminary design report.</p>
+    </div>
+
+    <div class="modal-sec">Design Concept</div>
+    <div class="modal-two-col">
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Mechanism Design</div>
+        <p>A cam-driven crushing mechanism was designed in Fusion 360 to convert rotational input into linear crushing force. The design was optimized for compactness within the distance constraint while generating sufficient force to fracture the candy tablets.</p>
+      </div>
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Documentation</div>
+        <p>Full 3D CAD assemblies were produced in Fusion 360 including exploded views, properly dimensioned drawings, and GD&amp;T callouts. The design package was developed to meet professional engineering drawing standards.</p>
+      </div>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img"><img src="assets/candy-1.jpg" alt="Candy crusher CAD model"></div>
+      <div class="modal-gallery-img"><img src="assets/candy-2.jpg" alt="Exploded view"></div>
+      <div class="modal-gallery-img"><img src="assets/candy-3.jpg" alt="Engineering drawings"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <ul class="modal-bullets">
+      <li>Functional prototype design with fully documented engineering drawing package</li>
+      <li>Produced accurate, scaled drawings suitable for a preliminary design report submission</li>
+      <li>Full 3D assembly with exploded models and BOM in Fusion 360</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Full engineering design process from open-ended problem statement to prototype documentation</li>
+        <li>GD&amp;T application in real design contexts — tolerancing joints, fits, and mating surfaces</li>
+        <li>Fusion 360 assembly workflow: constraints, motion studies, and exploded view creation</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Fabricate the prototype to validate the design against the candy crushing constraint</li>
+        <li>Optimize cam profile for higher crushing force with lower input torque</li>
+        <li>Reduce friction in the cam-follower interface with a roller follower design</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">Fusion 360</span><span class="modal-tag">GD&amp;T</span><span class="modal-tag">Prototyping</span><span class="modal-tag">Engineering Drawing</span><span class="modal-tag">CAD Assembly</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── WOODEN COOLER ── -->
+<div class="modal-overlay" id="modal-cooler">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">Custom Wooden Ice Cooler</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">CAD / Personal Project</span>
+        <span class="modal-meta-item">📅 Personal Project</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('cooler')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/cooler.jpg" alt="Finished wooden cooler"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Design and build a professional-quality wooden outdoor ice cooler as a personal gift. This was the first self-directed CAD project — the goal was to go through the full cycle of modeling, cost optimization, material selection, and physical fabrication independently.</p>
+    </div>
+
+    <div class="modal-sec">Design Concept</div>
+    <div class="modal-two-col">
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Modeling &amp; Optimization</div>
+        <p>The cooler was fully modeled in SolidWorks before any material was purchased. Parametric modeling was used to run cost optimization — adjusting board dimensions and joint types to minimize material waste while maintaining structural integrity.</p>
+      </div>
+      <div class="modal-info-block">
+        <div class="modal-info-block-title">Materials &amp; Joinery</div>
+        <p>Cedar was selected for its natural moisture resistance and outdoor durability. Joinery techniques including pocket screws, dado joints, and weatherproof hardware were researched and selected to ensure longevity in outdoor use.</p>
+      </div>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img wide"><img src="assets/cooler-1.jpg" alt="Cooler CAD model"></div>
+      <div class="modal-gallery-img"><img src="assets/cooler-2.jpg" alt="Finished cooler"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <ul class="modal-bullets">
+      <li>Successful professional-looking finished product delivered as a gift</li>
+      <li>Cost-optimized material list through parametric SolidWorks modeling</li>
+      <li>Gained real experience in the full self-directed design and build process</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>First full personal CAD project — learned the workflow from concept sketch to detailed model to physical build</li>
+        <li>Wood joinery techniques and how to select them based on load, aesthetics, and tool availability</li>
+        <li>Material selection for outdoor environments: moisture resistance, finish compatibility, hardware choices</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Add a drainage port with a plug for easier cleaning</li>
+        <li>Line the interior with foam insulation or a liner tray to improve ice retention</li>
+        <li>Add casters to the base for easier mobility</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">SolidWorks</span><span class="modal-tag">Wood Working</span><span class="modal-tag">Cost Optimization</span><span class="modal-tag">Material Selection</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── CAR APP ── -->
+<div class="modal-overlay" id="modal-carapp">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">Project Car Cost Program</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Software</span>
+        <span class="modal-meta-item">📅 Oct – Dec 2025</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('carapp')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/carapp.jpg" alt="Car cost program"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Build a desktop application to replace a disorganized spreadsheet system at a local auto shop. The goal was to track project car costs across 14 customers with a clean, non-technical UI that any staff member could use without training.</p>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img"><img src="assets/carapp-1.jpg" alt="App UI screenshot"></div>
+      <div class="modal-gallery-img"><img src="assets/carapp-2.jpg" alt="Database view"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <div class="modal-results">
+      <div class="result-card"><div class="result-val">38</div><div class="result-label">Data Points Organized</div></div>
+      <div class="result-card"><div class="result-val">$16k</div><div class="result-label">Cost Data Tracked</div></div>
+      <div class="result-card"><div class="result-val">14</div><div class="result-label">Customer Tabs</div></div>
+    </div>
+    <ul class="modal-bullets">
+      <li>Python script in VS Code organizing 38 data points and $16,000 of project car costs</li>
+      <li>Clean Tkinter UI with SQLite database for ease of use without technical knowledge</li>
+      <li>Tab-based interface for 14 active customers at the auto shop</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Building practical desktop applications with Python Tkinter and SQLite</li>
+        <li>UI design for non-technical users: reducing complexity while maintaining functionality</li>
+        <li>Database schema design for a real-world inventory and cost tracking use case</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Add export to PDF for customer invoicing</li>
+        <li>Build a simple web version so the shop can access it from any device</li>
+        <li>Add photo attachments per line item for visual documentation of parts</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">Python</span><span class="modal-tag">Tkinter</span><span class="modal-tag">SQLite</span><span class="modal-tag">VS Code</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── BRACKET ── -->
+<div class="modal-overlay" id="modal-bracket">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">Rear Seat Bracket — Evo 9</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Reverse Engineering</span>
+        <span class="modal-meta-item">📅 Personal Project</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('bracket')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/bracket.jpg" alt="Rear seat bracket"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Reverse-engineer a discontinued rear seat bracket for a Mitsubishi Lancer Evolution 9 that was no longer available from the manufacturer. The goal was to produce a functional replacement part through physical measurement, CAD modeling, and 3D printing.</p>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img"><img src="assets/bracket-1.jpg" alt="Technical drawing"></div>
+      <div class="modal-gallery-img"><img src="assets/bracket-2.jpg" alt="3D printed bracket installed"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <ul class="modal-bullets">
+      <li>Reverse-engineered bracket geometry from physical measurements and reference photographs</li>
+      <li>Produced full technical drawing package and 3D CAD model</li>
+      <li>Fabricated via 3D printing with iterative fit testing — achieved correct fit within 3 print iterations</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Reverse engineering workflow: measurement strategy, reference geometry capture, and tolerance estimation</li>
+        <li>How to account for 3D print shrinkage and dimensional variation when modeling replacement parts</li>
+        <li>Iterative prototyping: each print revealed fit issues that informed the next revision</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Fabricate in a stronger material such as PETG or ABS for improved heat and UV resistance in a car interior</li>
+        <li>Use a caliper-based measurement jig for higher dimensional accuracy in the initial model</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">CAD</span><span class="modal-tag">Reverse Engineering</span><span class="modal-tag">3D Printing</span><span class="modal-tag">Technical Drawing</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- ── RASPI ── -->
+<div class="modal-overlay" id="modal-raspi">
+ <div class="modal">
+  <div class="modal-top-bar"></div>
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-title">Raspberry Pi Visualization</div>
+      <div class="modal-meta">
+        <span class="modal-cat-badge">Embedded</span>
+        <span class="modal-meta-item">📅 Jan – Feb 2025</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal('raspi')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="modal-hero-img"><img src="assets/raspi.jpg" alt="Raspberry Pi setup"></div>
+
+    <div class="modal-sec">Goals</div>
+    <div class="modal-text-block">
+      <p>Develop an interactive image display system on a Raspberry Pi SenseHAT that responds to physical orientation — rotating the displayed image to remain upright as the device is rotated, with joystick input for user control.</p>
+    </div>
+
+    <div class="modal-sec">Project Images</div>
+    <div class="modal-gallery">
+      <div class="modal-gallery-img"><img src="assets/raspi-1.jpg" alt="Raspberry Pi SenseHAT"></div>
+      <div class="modal-gallery-img"><img src="assets/raspi-2.jpg" alt="8x8 LED display output"></div>
+      <div class="modal-gallery-img"><img src="assets/raspi-3.jpg" alt="MATLAB interface"></div>
+    </div>
+
+    <div class="modal-sec">Results</div>
+    <ul class="modal-bullets">
+      <li>Developed MATLAB code using Raspberry Pi SenseHAT, gyroscope, and joystick to rotate displayed images</li>
+      <li>Successfully maintained upright orientation with defined axis on 8×8 pixel images as the RPi is rotated</li>
+      <li>Condition overwriting with flat orientation allowing joystick rotation as a separate input mode</li>
+    </ul>
+
+    <div class="modal-sec">What Was Learned</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Reading and interpreting gyroscope data from the SenseHAT in MATLAB</li>
+        <li>Conditional logic for switching between sensor-driven and user-driven input modes</li>
+        <li>Working within the constraints of an 8×8 LED display for pixel-based image representation</li>
+      </ul>
+    </div>
+
+    <div class="modal-sec">Future Improvements</div>
+    <div class="modal-text-block">
+      <ul>
+        <li>Implement smooth rotation interpolation instead of snapping to 90° increments</li>
+        <li>Add accelerometer-based tilt detection for finer orientation resolution</li>
+        <li>Expand to display simple animations or sensor data visualizations</li>
+      </ul>
+    </div>
+
+    <div class="modal-tags"><span class="modal-tag">Raspberry Pi</span><span class="modal-tag">MATLAB</span><span class="modal-tag">SenseHAT</span><span class="modal-tag">Gyroscope</span><span class="modal-tag">Embedded Systems</span></div>
+  </div>
+ </div>
+</div>
+
+
+<script>
+function openModal(id) {
+  const overlay = document.getElementById('modal-' + id);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  overlay.scrollTop = 0;
+}
+function closeModal(id) {
+  document.getElementById('modal-' + id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => {
+    if (e.target === o) { o.classList.remove('open'); document.body.style.overflow = ''; }
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(o => {
+      o.classList.remove('open'); document.body.style.overflow = '';
+    });
+  }
+});
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in'), i * 60);
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.skill-card, .proj-card').forEach((el, i) => {
+  if (!el.classList.contains('reveal')) {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 55) + 'ms';
+    obs.observe(el);
+  }
+});
+</script>
+</body>
+</html>
